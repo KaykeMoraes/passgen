@@ -16,13 +16,13 @@ fn main() {
     match args.iter().nth(1) {
         Some(arg) => match arg.as_str() {
             "-c" | "--copy" => match copy_password(&generate_password()) {
-                Ok(_) => println!("The generated password was copied to the clipboard"),
+                Ok(_) => print!("The generated password was copied to the clipboard"),
                 Err(err) => eprintln!("{err}"),
             },
             "-h" | "--help" => display_help(),
             "-v" | "--version" => display_version(),
             _ => print_error(ApplicationError::UnknownFlag(arg.to_owned())),
         },
-        None => println!("{}", generate_password()),
+        None => print!("{}", generate_password()),
     }
 }
